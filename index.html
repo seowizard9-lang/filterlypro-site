@@ -1,109 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Filter Stremio by Year – Filterly Pro</title>
-  <meta name="description" content="Filterly Pro lets you filter Stremio by year, decade, and genre with powerful tools and lightning-fast performance." />
-  <meta name="keywords" content="Filter Stremio by year, Stremio filter addon, Stremio sorting, Filterly Pro, sort movies by year, Stremio by decade" />
-  <style>
-    body { font-family: system-ui, sans-serif; background:#fafafa; color:#222; margin:0; text-align:center; }
-    h1, h2 { color:#0B57D0; }
-    .container { padding:80px 20px; max-width:900px; margin:auto; }
-    .button { display:inline-block; background:#0B57D0; color:#fff; padding:12px 24px; border-radius:6px; text-decoration:none; margin-top:10px; transition:0.2s; }
-    .button:hover { background:#0949ad; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Filterly Pro – Filter Stremio by Year</title>
+<meta name="description" content="Filterly Pro lets you filter Stremio by year, decade, and genre with powerful tools and lightning-fast performance." />
+<meta name="keywords" content="Filter Stremio by year, Filterly Pro, Stremio filter addon, sort movies by year, Stremio decade filter" />
+<style>
+:root {
+  --gradient: linear-gradient(135deg, #8fd3fe, #e7a1ff);
+  --blue: #0b57d0;
+  --text-dark: #222;
+  --text-light: #555;
+  --bg-light: #fafafa;
+  --white: #fff;
+}
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  text-align: center;
+}
+header {
+  padding: 60px 20px 30px;
+}
+header img {
+  width: 120px;
+  display: block;
+  margin: 0 auto 20px;
+}
+h1 {
+  font-size: 2.4rem;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+p.lead {
+  max-width: 640px;
+  margin: 0 auto 30px;
+  color: var(--text-light);
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+.button {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--gradient);
+  color: #fff;
+  transition: opacity 0.2s;
+}
+.button:hover { opacity: 0.85; }
 
-    /* Status Bar */
-    #statusBar { background:#f1f5ff; padding:10px; font-weight:600; font-size:0.95rem; }
-    .online { color:#06b106; }
-    .offline { color:#d00; }
+/* Status bar */
+#statusBar {
+  background: #f3f6ff;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.online { color: #0ba30b; }
+.offline { color: #d00; }
 
-    /* Features Grid */
-    .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:24px; margin:60px 0; }
-    .feature { background:#fff; border-radius:10px; padding:20px; box-shadow:0 2px 6px rgba(0,0,0,0.08); text-align:left; }
-    .feature h3 { margin:0 0 10px; color:#0B57D0; }
+/* Sections */
+section {
+  padding: 80px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
 
-    /* Pricing */
-    .pricing { background:#fff; padding:40px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.06); margin:60px auto; max-width:400px; }
-    .price { font-size:2rem; font-weight:700; margin:10px 0; }
+/* Features */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+  gap: 28px;
+  margin-top: 50px;
+}
+.feature {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 30px 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.feature svg {
+  width: 40px; height: 40px;
+  stroke: url(#grad);
+  margin-bottom: 12px;
+}
+.feature h3 { color: var(--blue); margin-bottom: 10px; }
 
-    /* FAQ */
-    .faq { text-align:left; margin-top:80px; }
-    details { background:#fff; border-radius:8px; margin:10px 0; padding:15px 20px; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
-    summary { font-weight:600; color:#0B57D0; cursor:pointer; }
-    summary::marker { color:#0B57D0; }
+/* Pricing */
+.pricing {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 50px 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  max-width: 420px;
+  margin: 60px auto;
+}
+.price { font-size: 2rem; font-weight: 700; margin: 12px 0; color: var(--blue); }
 
-    /* Footer */
-    footer { margin:80px 0 40px; font-size:0.9rem; color:#777; }
-    footer a { color:#0B57D0; text-decoration:none; margin:0 8px; }
+/* FAQ */
+.faq { text-align: left; max-width: 700px; margin: 80px auto; }
+details {
+  background: var(--white);
+  border-radius: 12px;
+  margin: 12px 0;
+  padding: 18px 24px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+summary {
+  font-weight: 600;
+  color: var(--blue);
+  cursor: pointer;
+}
+summary::marker { color: var(--blue); }
 
-  </style>
+/* Footer */
+footer {
+  padding: 60px 20px;
+  font-size: 0.9rem;
+  color: #777;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+footer a { color: var(--blue); text-decoration: none; margin: 0 6px; }
+footer a:hover { text-decoration: underline; }
+</style>
 </head>
 <body>
-  <div id="statusBar">Server Status: <span id="statusText">Checking...</span></div>
 
-  <div class="container">
-    <h1>Filterly Pro</h1>
-    <p>Filterly Pro lets you filter Stremio by year, genre, and popularity — rediscover your favorite content faster than ever.</p>
-    <a href="https://stremio-tmdb-addon-v2-956939293183.us-central1.run.app/manifest.json" class="button">Install Add-On</a>
+<svg width="0" height="0">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8fd3fe" />
+      <stop offset="100%" stop-color="#e7a1ff" />
+    </linearGradient>
+  </defs>
+</svg>
 
-    <div class="features">
-      <div class="feature"><h3>🎬 Deep Filtering</h3><p>Find movies by genre, decade, and popularity in seconds.</p></div>
-      <div class="feature"><h3>⚡ Fast Cloud Results</h3><p>Powered by Google Cloud Run for lightning-fast response time.</p></div>
-      <div class="feature"><h3>🔍 Smart Discovery</h3><p>Automatically surfaces related titles and hidden gems.</p></div>
-      <div class="feature"><h3>🧩 Simple Setup</h3><p>Install once, use instantly — no login or manual updates.</p></div>
+<div id="statusBar">Server Status: <span id="statusText">Checking...</span></div>
+
+<header>
+  <img src="https://github.com/seowizard9-lang/Images/blob/main/Filter2.png?raw=true" alt="Filterly Pro logo">
+  <h1>Filterly Pro</h1>
+  <p class="lead">Filterly Pro lets you filter Stremio by year, genre, and popularity — rediscover your favorite content faster than ever.</p>
+  <a href="https://stremio-tmdb-addon-v2-956939293183.us-central1.run.app/manifest.json" class="button">Install Add-On</a>
+</header>
+
+<section id="features">
+  <h2>Key Features</h2>
+  <div class="features">
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      <h3>Deep Filtering</h3>
+      <p>Find movies by genre, decade, or popularity — instantly and precisely.</p>
     </div>
-
-    <section class="pricing">
-      <h2>💎 Simple Pricing</h2>
-      <p>Access all Filterly Pro features with one low annual fee.</p>
-      <div class="price">$4.99/year</div>
-      <p>This small cost helps maintain server uptime, handle requests, and keep performance smooth for everyone.</p>
-      <a href="#" class="button">Subscribe Now</a>
-    </section>
-
-    <section class="faq">
-      <h2>❓ Frequently Asked Questions</h2>
-
-      <details><summary>Does this allow me to view any movie or show?</summary>
-      <p>No. Filterly Pro only helps you organize, filter, and search the content available within your existing Stremio sources — it doesn’t unlock new or premium content.</p></details>
-
-      <details><summary>Is this free?</summary>
-      <p>Filterly Pro costs $4.99 per year. This small fee supports server hosting and bandwidth costs on Google Cloud. Each time you filter by genre or decade, your request interacts with the cloud server to fetch updated data quickly — that’s what keeps it smooth and fast for everyone.</p></details>
-
-      <details><summary>Do I need an account?</summary>
-      <p>No login is required. Once you subscribe, you’ll receive a license key that you can enter once inside the add-on to unlock full access.</p></details>
-
-      <details><summary>Does it work on all devices?</summary>
-      <p>Yes! Filterly Pro works anywhere Stremio runs — desktop, mobile, and TV apps.</p></details>
-    </section>
-
-    <section style="margin-top:80px;">
-      <h2>📰 Latest Updates</h2>
-      <div style="background:#fff;padding:20px;border-radius:10px;box-shadow:0 1px 5px rgba(0,0,0,0.05);max-width:600px;margin:20px auto;text-align:left;">
-        <h3 style="color:#0B57D0;">How to Filter Stremio by Year</h3>
-        <p>Learn how to browse Stremio by decade or year with Filterly Pro.</p>
-        <p style="color:#888;">📅 Published October 2025</p>
-      </div>
-    </section>
-
-    <footer>
-      © 2025 Filterly Pro · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a>
-    </footer>
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 11-12h-9z"/></svg>
+      <h3>Fast Cloud Results</h3>
+      <p>Powered by Google Cloud Run for lightning-fast performance worldwide.</p>
+    </div>
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <h3>Smart Discovery</h3>
+      <p>Automatically surfaces related titles and hidden gems from your library.</p>
+    </div>
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <h3>Simple Setup</h3>
+      <p>Install once and enjoy — no login, no maintenance, pure convenience.</p>
+    </div>
   </div>
+</section>
 
-  <script>
-    async function checkServerStatus() {
-      try {
-        const res = await fetch("https://stremio-tmdb-addon-v2-956939293183.us-central1.run.app/manifest.json", { method: "HEAD" });
-        document.getElementById("statusText").textContent = "Online ✅";
-        document.getElementById("statusText").className = "online";
-      } catch {
-        document.getElementById("statusText").textContent = "Offline ❌";
-        document.getElementById("statusText").className = "offline";
-      }
-    }
-    checkServerStatus();
-  </script>
+<section class="pricing">
+  <h2>Simple Pricing</h2>
+  <p>Access all Filterly Pro features for one low annual fee.</p>
+  <div class="price">$4.99 / year</div>
+  <p>This small cost supports server uptime, data processing, and performance optimization.</p>
+  <a href="#" class="button">Subscribe Now</a>
+</section>
+
+<section class="faq">
+  <h2>Frequently Asked Questions</h2>
+
+  <details><summary>Does this allow me to view any movie or show?</summary>
+  <p>No. Filterly Pro organizes and filters content already available in your Stremio sources — it does not unlock premium content.</p></details>
+
+  <details><summary>Is this free?</summary>
+  <p>Filterly Pro costs $4.99 per year. This fee supports cloud hosting and data processing so filters load quickly and stay reliable.</p></details>
+
+  <details><summary>Do I need an account?</summary>
+  <p>No login required. You’ll receive a license key after subscribing — enter it once and you’re done.</p></details>
+
+  <details><summary>Does it work on all devices?</summary>
+  <p>Yes, Filterly Pro works seamlessly on desktop, mobile, and TV Stremio apps.</p></details>
+</section>
+
+<footer>
+  © 2025 Filterly Pro · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a>
+</footer>
+
+<script>
+async function checkServerStatus() {
+  try {
+    await fetch("https://stremio-tmdb-addon-v2-956939293183.us-central1.run.app/manifest.json", { method: "HEAD" });
+    document.getElementById("statusText").textContent = "Online ✅";
+    document.getElementById("statusText").className = "online";
+  } catch {
+    document.getElementById("statusText").textContent = "Offline ❌";
+    document.getElementById("statusText").className = "offline";
+  }
+}
+checkServerStatus();
+</script>
 </body>
 </html>
