@@ -76,10 +76,24 @@ section {
 /* Features */
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 28px;
   margin-top: 50px;
 }
+
+/* Responsive fix for mobile */
+@media (max-width: 900px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
+
 .feature {
   background: var(--white);
   border-radius: 16px;
