@@ -22,24 +22,65 @@ body {
   color: var(--text-dark);
   text-align: center;
 }
+
+/* Floating status bar */
+#statusBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #f3f6ff;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  z-index: 1000;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.online { color: #0ba30b; }
+.offline { color: #d00; }
+
+/* Header that shrinks on scroll */
 header {
-  padding: 60px 20px 30px;
+  position: sticky;
+  top: 40px; /* below the status bar */
+  z-index: 999;
+  padding: 50px 20px 30px;
+  background: var(--bg-light);
+  transition: all 0.3s ease;
+}
+header.shrink {
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+}
+header .header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  transition: all 0.3s ease;
 }
 header img {
   width: 120px;
-  display: block;
-  margin: 0 auto 20px;
+  transition: all 0.3s ease;
 }
-h1 {
+header.shrink img {
+  width: 40px;
+  margin-right: 10px;
+}
+header h1 {
   font-size: 2.4rem;
   background: var(--gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 10px;
+  transition: all 0.3s ease;
 }
+header.shrink h1 { font-size: 1.6rem; }
+
 p.lead {
   max-width: 640px;
-  margin: 0 auto 30px;
+  margin: 10px auto 30px;
   color: var(--text-light);
   line-height: 1.6;
   font-size: 1.05rem;
@@ -56,44 +97,26 @@ p.lead {
 }
 .button:hover { opacity: 0.85; }
 
-/* Status bar */
-#statusBar {
-  background: #f3f6ff;
-  padding: 10px;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-.online { color: #0ba30b; }
-.offline { color: #d00; }
-
-/* Sections */
+/* Section spacing */
 section {
   padding: 80px 20px;
   max-width: 1000px;
   margin: auto;
 }
 
-/* Features */
+/* Features grid */
 .features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 28px;
   margin-top: 50px;
 }
-
-/* Responsive fix for mobile */
 @media (max-width: 900px) {
-  .features {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .features { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (max-width: 500px) {
-  .features {
-    grid-template-columns: 1fr;
-  }
+  .features { grid-template-columns: 1fr; }
 }
-
 .feature {
   background: var(--white);
   border-radius: 16px;
@@ -160,8 +183,10 @@ footer a:hover { text-decoration: underline; }
 <div id="statusBar">Server Status: <span id="statusText">Checking...</span></div>
 
 <header>
-  <img src="https://github.com/seowizard9-lang/Images/blob/main/Filter2.png?raw=true" alt="FilterlyPro logo">
-  <h1>FilterlyPro</h1>
+  <div class="header-content">
+    <img src="https://github.com/seowizard9-lang/Images/blob/main/Filter2.png?raw=true" alt="FilterlyPro logo">
+    <h1>FilterlyPro</h1>
+  </div>
   <p class="lead">FilterlyPro lets you filter Stremio by year, genre, and popularity — rediscover your favorite content faster than ever.</p>
   <a href="https://stremio-tmdb-addon-v2-956939293183.us-central1.run.app/manifest.json" class="button">Install Add-On</a>
 </header>
@@ -202,18 +227,18 @@ footer a:hover { text-decoration: underline; }
 
 <section class="faq">
   <h2>Frequently Asked Questions</h2>
-
   <details><summary>Does this allow me to view any movie or show?</summary>
-  <p>No. FilterlyPro organizes and filters content already available in your Stremio sources — it does not unlock premium content.</p></details>
-
+    <p>No. FilterlyPro organizes and filters content already available in your Stremio sources — it does not unlock premium content.</p>
+  </details>
   <details><summary>Is this free?</summary>
-  <p>FilterlyPro costs $4.99 per year. This fee supports cloud hosting and data processing so filters load quickly and stay reliable.</p></details>
-
+    <p>FilterlyPro costs $4.99 per year. This fee supports cloud hosting and data processing so filters load quickly and stay reliable.</p>
+  </details>
   <details><summary>Do I need an account?</summary>
-  <p>No login required. You’ll receive a license key after subscribing — enter it once and you’re done.</p></details>
-
+    <p>No login required. You’ll receive a license key after subscribing — enter it once and you’re done.</p>
+  </details>
   <details><summary>Does it work on all devices?</summary>
-  <p>Yes, FilterlyPro works seamlessly on desktop, mobile, and TV Stremio apps.</p></details>
+    <p>Yes, FilterlyPro works seamlessly on desktop, mobile, and TV Stremio apps.</p>
+  </details>
 </section>
 
 <footer>
@@ -232,6 +257,13 @@ async function checkServerStatus() {
   }
 }
 checkServerStatus();
+
+// Shrink header on scroll
+const header = document.querySelector("header");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 60) header.classList.add("shrink");
+  else header.classList.remove("shrink");
+});
 </script>
 </body>
 </html>
