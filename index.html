@@ -30,6 +30,7 @@ body {
 /* Floating server status bar */
 #statusBar {
   position: fixed;
+  
   top: 0;
   left: 0;
   width: 100%;
@@ -267,6 +268,11 @@ async function checkServerStatus() {
   }
 }
 checkServerStatus();
+// Trigger fade-in only after DOM is ready
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("statusBar").style.animationPlayState = "running";
+  document.getElementById("floatingHeader").style.animationPlayState = "running";
+});
 </script>
 </body>
 </html>
