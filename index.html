@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>FilterlyPro – Filter Stremio by Year</title>
-<meta name="description" content="FilterlyPro lets you filter Stremio by year, decade, and genre with powerful tools, AI movie suggestions, and lightning-fast performance." />
+<meta name="description" content="FilterlyPro lets you filter Stremio by year, decade, and genre with powerful tools and lightning-fast performance." />
 <meta name="keywords" content="Filter Stremio by year, FilterlyPro, Stremio filter addon, sort movies by year, Stremio decade filter, AI movie suggestions, monthly curated films" />
 
 <!-- Google Font for Nunito -->
@@ -106,7 +106,7 @@ body {
 
 /* 🔹 Main header content */
 header {
-  padding-top: 140px;
+  padding-top: 140px; /* makes room for floating bars */
   padding-bottom: 40px;
 }
 p.lead {
@@ -183,7 +183,6 @@ section {
   border: 2px solid transparent;
   background: linear-gradient(#fff, #fff) padding-box,
               linear-gradient(135deg, #8fd3fe, #e7a1ff) border-box;
-  position: relative;
 }
 .ai-section h2 {
   font-family: 'Nunito', sans-serif;
@@ -192,9 +191,6 @@ section {
   -webkit-text-fill-color: transparent;
   font-size: 1.8rem;
   margin-bottom: 15px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
 }
 .ai-section p {
   color: var(--text-light);
@@ -202,18 +198,6 @@ section {
   font-size: 1rem;
   max-width: 600px;
   margin: 0 auto;
-}
-
-/* ✨ Sparkle Animation */
-.sparkle {
-  color: #e7a1ff;
-  font-size: 1.5rem;
-  animation: sparklePulse 3s infinite ease-in-out;
-  filter: drop-shadow(0 0 4px rgba(231,161,255,0.6));
-}
-@keyframes sparklePulse {
-  0%, 100% { opacity: 0.3; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.2); }
 }
 
 /* 🔹 FAQ */
@@ -317,7 +301,7 @@ footer a:hover { text-decoration: underline; }
 
 <!-- 🔹 NEW: AI Section -->
 <section class="ai-section">
-  <h2><span class="sparkle">✨</span> Now Powered by AI</h2>
+  <h2>Now Powered by AI</h2>
   <p>
     FilterlyPro is now enhanced with artificial intelligence — providing monthly curated collections and AI-suggested films tailored perfectly for each month’s mood and season.  
     Discover what’s trending, hidden, and fresh — all intelligently selected for you.
