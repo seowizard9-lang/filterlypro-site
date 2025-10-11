@@ -27,51 +27,45 @@ body {
   text-align: center;
 }
 
-/* Floating server status bar */
+/* 🔹 Gradient hybrid server status bar */
 #statusBar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: #ffffffcc;
-  backdrop-filter: blur(8px);
-  padding: 10px 0;
+  background: linear-gradient(90deg, #8fd3fe, #e7a1ff);
+  color: #fff;
   font-weight: 600;
   font-size: 0.9rem;
-  color: #444;
+  padding: 8px 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  z-index: 1000;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  transition: background 0.3s ease;
 }
 
 .status-pill {
   display: inline-flex;
   align-items: center;
-  background: #f4f7fa;
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 20px;
-  padding: 4px 12px;
-  font-weight: 500;
-  font-size: 0.85rem;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+  padding: 6px 14px;
+  backdrop-filter: blur(6px);
+  gap: 6px;
+  box-shadow: 0 0 6px rgba(255,255,255,0.2);
 }
 
 .status-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  margin-right: 6px;
   transition: all 0.3s ease;
 }
-
 .status-online { background: #22c55e; box-shadow: 0 0 6px #22c55e80; }
 .status-offline { background: #ef4444; box-shadow: 0 0 6px #ef444480; }
 
-
-/* Floating logo + title */
+/* 🔹 Floating logo + title */
 #floatingHeader {
   position: fixed;
   top: 40px;
@@ -105,9 +99,9 @@ body {
   margin: 0;
 }
 
-/* Main header content (non-floating) */
+/* 🔹 Main header content */
 header {
-  padding-top: 140px; /* makes room for floating bar */
+  padding-top: 140px; /* makes room for floating bars */
   padding-bottom: 40px;
 }
 p.lead {
@@ -129,14 +123,14 @@ p.lead {
 }
 .button:hover { opacity: 0.85; }
 
-/* Section spacing */
+/* 🔹 Section spacing */
 section {
   padding: 20px 20px;
   max-width: 1000px;
   margin: auto;
 }
 
-/* Features grid */
+/* 🔹 Features grid */
 .features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -162,7 +156,7 @@ section {
 }
 .feature h3 { color: var(--blue); margin-bottom: 10px; }
 
-/* Pricing */
+/* 🔹 Pricing */
 .pricing {
   background: var(--white);
   border-radius: 16px;
@@ -173,7 +167,7 @@ section {
 }
 .price { font-size: 2rem; font-weight: 700; margin: 12px 0; color: var(--blue); }
 
-/* FAQ */
+/* 🔹 FAQ */
 .faq { text-align: left; max-width: 700px; margin: 80px auto; }
 details {
   background: var(--white);
@@ -189,7 +183,7 @@ summary {
 }
 summary::marker { color: var(--blue); }
 
-/* Footer */
+/* 🔹 Footer */
 footer {
   padding: 60px 20px;
   font-size: 0.9rem;
@@ -203,6 +197,7 @@ footer a:hover { text-decoration: underline; }
 </head>
 <body>
 
+<!-- SVG gradient for icons -->
 <svg width="0" height="0">
   <defs>
     <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -212,7 +207,7 @@ footer a:hover { text-decoration: underline; }
   </defs>
 </svg>
 
-<!-- Floating Server Bar -->
+<!-- 🔹 Gradient bar with pill -->
 <div id="statusBar">
   <div class="status-pill">
     <strong>FilterlyPro Server Status: </strong>
@@ -221,9 +216,7 @@ footer a:hover { text-decoration: underline; }
   </div>
 </div>
 
-d="statusText">Checking...</span></div>
-
-<!-- Floating Mini Header -->
+<!-- 🔹 Floating Mini Header -->
 <div id="floatingHeader">
   <div class="header-content">
     <img src="https://github.com/seowizard9-lang/Images/blob/main/Filter2.png?raw=true" alt="FilterlyPro logo">
@@ -231,12 +224,13 @@ d="statusText">Checking...</span></div>
   </div>
 </div>
 
-<!-- Normal (scrollable) Header Content -->
+<!-- 🔹 Main Header Content -->
 <header>
   <p class="lead">FilterlyPro lets you filter Stremio by year, genre, and popularity — rediscover your favorite content faster than ever.</p>
   <a href="https://stremio-tmdb-addon-v2-956939293183.us-central1.run.app/manifest.json" class="button">Install Add-On</a>
 </header>
 
+<!-- 🔹 Features -->
 <section id="features">
   <h2>Key Features</h2>
   <div class="features">
@@ -263,6 +257,7 @@ d="statusText">Checking...</span></div>
   </div>
 </section>
 
+<!-- 🔹 Pricing -->
 <section class="pricing">
   <h2>Simple Pricing</h2>
   <p>Access all FilterlyPro features for one low annual fee.</p>
@@ -271,6 +266,7 @@ d="statusText">Checking...</span></div>
   <a href="#" class="button">Subscribe Now</a>
 </section>
 
+<!-- 🔹 FAQ -->
 <section class="faq">
   <h2>Frequently Asked Questions</h2>
   <details><summary>Does this allow me to view any movie or show?</summary>
@@ -287,10 +283,12 @@ d="statusText">Checking...</span></div>
   </details>
 </section>
 
+<!-- 🔹 Footer -->
 <footer>
   © 2025 FilterlyPro · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a>
 </footer>
 
+<!-- 🔹 JS -->
 <script>
 async function checkServerStatus() {
   const dot = document.getElementById("statusDot");
@@ -304,14 +302,7 @@ async function checkServerStatus() {
     dot.className = "status-dot status-offline";
   }
 }
-checkServerStatus();
-
-checkServerStatus();
-// Trigger fade-in only after DOM is ready
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("statusBar").style.animationPlayState = "running";
-  document.getElementById("floatingHeader").style.animationPlayState = "running";
-});
+document.addEventListener("DOMContentLoaded", checkServerStatus);
 </script>
 </body>
 </html>
