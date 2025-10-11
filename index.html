@@ -6,6 +6,10 @@
 <title>FilterlyPro – Filter Stremio by Year</title>
 <meta name="description" content="FilterlyPro lets you filter Stremio by year, decade, and genre with powerful tools and lightning-fast performance." />
 <meta name="keywords" content="Filter Stremio by year, FilterlyPro, Stremio filter addon, sort movies by year, Stremio decade filter" />
+
+<!-- Google Font for Nunito -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --gradient: linear-gradient(135deg, #8fd3fe, #e7a1ff);
@@ -23,7 +27,7 @@ body {
   text-align: center;
 }
 
-/* Floating status bar */
+/* Floating server status bar */
 #statusBar {
   position: fixed;
   top: 0;
@@ -39,48 +43,48 @@ body {
 .online { color: #0ba30b; }
 .offline { color: #d00; }
 
-/* Header that shrinks on scroll */
-header {
-  position: sticky;
-  top: 40px; /* below the status bar */
-  z-index: 999;
-  padding: 50px 20px 30px;
-  background: var(--bg-light);
-  transition: all 0.3s ease;
-}
-header.shrink {
-  padding: 10px 20px;
+/* Floating logo + title */
+#floatingHeader {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  width: 100%;
   background: rgba(255,255,255,0.9);
   backdrop-filter: blur(8px);
+  z-index: 999;
+  padding: 10px 0;
   box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
 }
-header .header-content {
+#floatingHeader .header-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  transition: all 0.3s ease;
+  gap: 12px;
 }
-header img {
-  width: 120px;
-  transition: all 0.3s ease;
-}
-header.shrink img {
+#floatingHeader img {
   width: 40px;
-  margin-right: 10px;
+  transition: all 0.3s ease;
 }
-header h1 {
-  font-size: 2.4rem;
+#floatingHeader h1 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  font-size: 1.6rem;
   background: var(--gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  transition: all 0.3s ease;
+  margin: 0;
 }
-header.shrink h1 { font-size: 1.6rem; }
 
+/* Main header content (non-floating) */
+header {
+  padding-top: 140px; /* makes room for floating bar */
+  padding-bottom: 40px;
+}
 p.lead {
   max-width: 640px;
-  margin: 10px auto 30px;
+  margin: 0 auto 30px;
   color: var(--text-light);
   line-height: 1.6;
   font-size: 1.05rem;
@@ -180,13 +184,19 @@ footer a:hover { text-decoration: underline; }
   </defs>
 </svg>
 
+<!-- Floating Server Bar -->
 <div id="statusBar">Server Status: <span id="statusText">Checking...</span></div>
 
-<header>
+<!-- Floating Mini Header -->
+<div id="floatingHeader">
   <div class="header-content">
     <img src="https://github.com/seowizard9-lang/Images/blob/main/Filter2.png?raw=true" alt="FilterlyPro logo">
     <h1>FilterlyPro</h1>
   </div>
+</div>
+
+<!-- Normal (scrollable) Header Content -->
+<header>
   <p class="lead">FilterlyPro lets you filter Stremio by year, genre, and popularity — rediscover your favorite content faster than ever.</p>
   <a href="https://stremio-tmdb-addon-v2-956939293183.us-central1.run.app/manifest.json" class="button">Install Add-On</a>
 </header>
@@ -257,13 +267,6 @@ async function checkServerStatus() {
   }
 }
 checkServerStatus();
-
-// Shrink header on scroll
-const header = document.querySelector("header");
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 60) header.classList.add("shrink");
-  else header.classList.remove("shrink");
-});
 </script>
 </body>
 </html>
