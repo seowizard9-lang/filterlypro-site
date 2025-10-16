@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FilterlyPro – Filter Stremio by Year</title>
+<title>FilterlyPro – Filter Stremio by Year, Genre & More</title>
 <meta name="description" content="FilterlyPro lets you filter Stremio by year, decade, and genre with powerful tools and lightning-fast performance." />
 <meta name="keywords" content="Filter Stremio by year, FilterlyPro, Stremio filter addon, sort movies by year, Stremio decade filter, AI movie suggestions, monthly curated films" />
 
 <!-- Google Font for Nunito -->
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -21,7 +21,7 @@
 }
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg-light);
   color: var(--text-dark);
   text-align: center;
@@ -76,7 +76,7 @@ body {
   top: 40px;
   left: 0;
   width: 100%;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.95);
   backdrop-filter: blur(8px);
   z-index: 999;
   padding: 10px 0;
@@ -90,7 +90,8 @@ body {
   gap: 12px;
 }
 #floatingHeader img {
-  width: 40px;
+  width: 42px;
+  height: 42px;
   transition: all 0.3s ease;
 }
 #floatingHeader h1 {
@@ -106,33 +107,68 @@ body {
 
 /* 🔹 Main header content */
 header {
-  padding-top: 140px; /* makes room for floating bars */
-  padding-bottom: 40px;
+  padding-top: 140px;
+  padding-bottom: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+header h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.2;
 }
 p.lead {
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto 30px;
-  color: var(--text-light);
-  line-height: 1.6;
-  font-size: 1.05rem;
+  line-height: 1.7;
+  font-size: 1.15rem;
+  opacity: 0.95;
 }
 .button {
   display: inline-block;
-  padding: 14px 32px;
+  padding: 16px 40px;
   border-radius: 30px;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
-  background: var(--gradient);
-  color: #fff;
-  transition: opacity 0.2s;
+  background: white;
+  color: #667eea;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  font-size: 1.05rem;
 }
-.button:hover { opacity: 0.85; }
+.button:hover { 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.button-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  margin-left: 15px;
+}
+.button-secondary:hover {
+  background: white;
+  color: #667eea;
+}
 
 /* 🔹 Section spacing */
 section {
-  padding: 20px 20px;
+  padding: 60px 20px;
   max-width: 1000px;
   margin: auto;
+}
+
+section h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* 🔹 Features grid */
@@ -151,81 +187,243 @@ section {
 .feature {
   background: var(--white);
   border-radius: 16px;
-  padding: 30px 25px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  padding: 35px 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(143, 211, 254, 0.3);
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, #8fd3fe, #e7a1ff) border-box;
 }
 .feature svg {
-  width: 40px; height: 40px;
+  width: 48px; height: 48px;
   stroke: url(#grad);
-  margin-bottom: 12px;
+  margin-bottom: 18px;
+  stroke-width: 2;
 }
-.feature h3 { color: var(--blue); margin-bottom: 10px; }
+.feature h3 { 
+  font-family: 'Nunito', sans-serif;
+  color: var(--blue); 
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.feature p {
+  color: var(--text-light);
+  line-height: 1.6;
+}
 
 /* 🔹 Pricing */
 .pricing {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 50px 30px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-  max-width: 420px;
+  background: linear-gradient(135deg, #f8fbff, #ffffff) padding-box,
+              linear-gradient(135deg, #8fd3fe, #e7a1ff) border-box;
+  border: 3px solid transparent;
+  border-radius: 20px;
+  padding: 60px 40px;
+  box-shadow: 0 8px 30px rgba(143, 211, 254, 0.2);
+  max-width: 480px;
   margin: 60px auto;
 }
-.price { font-size: 2rem; font-weight: 700; margin: 12px 0; color: var(--blue); }
+.pricing h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+.price { 
+  font-family: 'Nunito', sans-serif;
+  font-size: 3rem; 
+  font-weight: 800; 
+  margin: 20px 0;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.pricing p {
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
 
 /* 🔹 AI Powered Section */
 .ai-section {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 50px 30px;
-  margin: 60px auto;
-  max-width: 700px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-  border: 2px solid transparent;
-  background: linear-gradient(#fff, #fff) padding-box,
+  background: linear-gradient(135deg, #f8fbff, #ffffff) padding-box,
               linear-gradient(135deg, #8fd3fe, #e7a1ff) border-box;
+  border-radius: 20px;
+  padding: 60px 40px;
+  margin: 80px auto;
+  max-width: 750px;
+  box-shadow: 0 8px 30px rgba(143, 211, 254, 0.2);
+  border: 3px solid transparent;
+}
+.ai-section .ai-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.ai-section img {
+  width: 48px;
+  height: 48px;
 }
 .ai-section h2 {
   font-family: 'Nunito', sans-serif;
   background: var(--gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 1.8rem;
-  margin-bottom: 15px;
+  font-size: 2.2rem;
+  margin: 0;
 }
 .ai-section p {
   color: var(--text-light);
-  line-height: 1.7;
-  font-size: 1rem;
-  max-width: 600px;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  max-width: 650px;
   margin: 0 auto;
 }
 
+/* 🔹 CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 80px 20px;
+  margin-top: 80px;
+}
+.cta-section h2 {
+  font-family: 'Nunito', sans-serif;
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+}
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 35px;
+  opacity: 0.95;
+}
+
 /* 🔹 FAQ */
-.faq { text-align: left; max-width: 700px; margin: 80px auto; }
+.faq { 
+  text-align: left; 
+  max-width: 750px; 
+  margin: 80px auto;
+  padding: 0 20px;
+}
+.faq h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
 details {
   background: var(--white);
   border-radius: 12px;
-  margin: 12px 0;
-  padding: 18px 24px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  margin: 16px 0;
+  padding: 22px 28px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  border: 2px solid #f0f0f0;
+  transition: all 0.3s;
+}
+details:hover {
+  border-color: transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, #8fd3fe, #e7a1ff) border-box;
+  border: 2px solid transparent;
+}
+details[open] {
+  border-color: transparent;
+  background: linear-gradient(135deg, #f8fbff, #ffffff) padding-box,
+              linear-gradient(135deg, #8fd3fe, #e7a1ff) border-box;
+  border: 2px solid transparent;
 }
 summary {
-  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
   color: var(--blue);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-summary::marker { color: var(--blue); }
+summary::marker { 
+  color: var(--blue);
+}
+details p {
+  margin-top: 15px;
+  color: var(--text-light);
+  line-height: 1.7;
+}
 
 /* 🔹 Footer */
 footer {
   padding: 60px 20px;
-  font-size: 0.9rem;
-  color: #777;
+  font-size: 0.95rem;
+  color: #666;
   background: #fff;
   border-top: 1px solid #eee;
 }
-footer a { color: var(--blue); text-decoration: none; margin: 0 6px; }
-footer a:hover { text-decoration: underline; }
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+.footer-logo img {
+  width: 36px;
+  height: 36px;
+}
+.footer-logo span {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+footer a { 
+  color: var(--blue); 
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+footer a:hover { 
+  color: #764ba2;
+  text-decoration: underline; 
+}
+.footer-note {
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 20px;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  header h2 { font-size: 2.2rem; }
+  .button-secondary { margin-left: 0; margin-top: 15px; }
+  section h2 { font-size: 1.8rem; }
+}
 </style>
 </head>
 <body>
@@ -259,75 +457,119 @@ footer a:hover { text-decoration: underline; }
 
 <!-- 🔹 Main Header Content -->
 <header>
-  <p class="lead">FilterlyPro lets you filter Stremio by year, genre, and popularity — rediscover your favorite content faster than ever.</p>
-  <a href="https://stremio-tmdb-addon-v2-956939293183.us-central1.run.app/manifest.json" class="button">Install Add-On</a>
+  <h2>The Ultimate Stremio Filter</h2>
+  <p class="lead">Discover movies by year, decade, genre, and popularity. Powered by AI curation and lightning-fast cloud performance — your perfect streaming companion.</p>
+  <a href="/configure" class="button">Get Started Free</a>
+  <a href="#features" class="button button-secondary">Learn More</a>
 </header>
 
 <!-- 🔹 Features -->
 <section id="features">
-  <h2>Key Features</h2>
+  <h2>Why Choose FilterlyPro?</h2>
   <div class="features">
     <div class="feature">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-      <h3>Deep Filtering</h3>
-      <p>Find movies by genre, decade, or popularity — instantly and precisely.</p>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <h3>Filter by Decade</h3>
+      <p>Browse movies from the 1950s to today. Rediscover classics or find hidden gems from your favorite era.</p>
     </div>
     <div class="feature">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 11-12h-9z"/></svg>
-      <h3>Fast Cloud Results</h3>
-      <p>Powered by Google Cloud Run for lightning-fast performance worldwide.</p>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h8a2 2 0 0 1 2 2v10a5 5 0 0 1-5 5H5a3 3 0 0 1-3-3V3z"/>
+        <path d="M22 3h-8a2 2 0 0 0-2 2v10a5 5 0 0 0 5 5h2a3 3 0 0 0 3-3V3z"/>
+      </svg>
+      <h3>Genre Mastery</h3>
+      <p>From action to romance, filter by any genre. Set up to 3 favorites for instant access to what you love.</p>
     </div>
     <div class="feature">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <h3>Smart Discovery</h3>
-      <p>Automatically surfaces related titles and hidden gems from your library.</p>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13 2L3 14h9l-1 8 11-12h-9z"/>
+      </svg>
+      <h3>Lightning Fast</h3>
+      <p>Hosted on Google Cloud Run for instant results worldwide. No waiting, just watching.</p>
     </div>
     <div class="feature">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-      <h3>Simple Setup</h3>
-      <p>Install once and enjoy — no login, no maintenance, pure convenience.</p>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 6v6l4 2"/>
+      </svg>
+      <h3>Always Free</h3>
+      <p>Core filtering features are completely free. Advanced AI features available with premium.</p>
     </div>
   </div>
 </section>
 
-<!-- 🔹 Pricing -->
-<section class="pricing">
-  <h2>Simple Pricing</h2>
-  <p>Access all FilterlyPro features for one low annual fee.</p>
-  <div class="price">$4.99 / year</div>
-  <p>This small cost supports server uptime, data processing, and performance optimization.</p>
-  <a href="#" class="button">Subscribe Now</a>
+<!-- 🔹 AI Section -->
+<section class="ai-section">
+  <div class="ai-header">
+    <img src="https://github.com/seowizard9-lang/Images/blob/main/OpenAIIcon.png?raw=true" alt="OpenAI">
+    <h2>AI-Powered Curation</h2>
+  </div>
+  <p>
+    FilterlyPro now features intelligent, AI-curated collections that refresh monthly and weekly. Get personalized recommendations based on seasonal trends, themes, and hidden gems — all powered by OpenAI's advanced technology.
+  </p>
 </section>
 
-<!-- 🔹 NEW: AI Section -->
-<section class="ai-section">
-  <h2>Now Powered by AI</h2>
-  <p>
-    FilterlyPro is now enhanced with artificial intelligence — providing monthly curated collections and AI-suggested films tailored perfectly for each month’s mood and season.  
-    Discover what’s trending, hidden, and fresh — all intelligently selected for you.
-  </p>
+<!-- 🔹 CTA Section -->
+<section class="cta-section">
+  <h2>Ready to Transform Your Streaming?</h2>
+  <p>Set up your custom filters in minutes. No account required.</p>
+  <a href="/configure" class="button">Configure Your Add-On</a>
 </section>
 
 <!-- 🔹 FAQ -->
 <section class="faq">
   <h2>Frequently Asked Questions</h2>
-  <details><summary>Does this allow me to view any movie or show?</summary>
-    <p>No. FilterlyPro organizes and filters content already available in your Stremio sources — it does not unlock premium content.</p>
+  <details>
+    <summary>🎬 What exactly does FilterlyPro do?</summary>
+    <p>FilterlyPro is a Stremio add-on that organizes and filters movie metadata by year, decade, genre, and popularity. It doesn't host or stream content — it just makes finding what you want to watch much easier.</p>
   </details>
-  <details><summary>Is this free?</summary>
-    <p>FilterlyPro costs $4.99 per year. This fee supports cloud hosting and data processing so filters load quickly and stay reliable.</p>
+  <details>
+    <summary>💰 Is FilterlyPro really free?</summary>
+    <p>Yes! The core filtering features (genres, decades, years) are completely free. Premium AI-curated collections are available for $4.99/year to support our cloud infrastructure.</p>
   </details>
-  <details><summary>Do I need an account?</summary>
-    <p>No login required. You’ll receive a license key after subscribing — enter it once and you’re done.</p>
+  <details>
+    <summary>🔑 Do I need a TMDB API key?</summary>
+    <p>Yes, you'll need a free TMDB API key. Don't worry — we provide simple instructions for getting one. It takes about 2 minutes and is completely free.</p>
   </details>
-  <details><summary>Does it work on all devices?</summary>
-    <p>Yes, FilterlyPro works seamlessly on desktop, mobile, and TV Stremio apps.</p>
+  <details>
+    <summary>📱 Does it work on all devices?</summary>
+    <p>Absolutely! FilterlyPro works seamlessly on desktop, mobile, smart TVs, and any device that runs Stremio.</p>
+  </details>
+  <details>
+    <summary>🔒 Is my data safe?</summary>
+    <p>Yes. We don't store your API key, viewing history, or any personal information. Your API key is embedded only in your personal add-on URL.</p>
+  </details>
+  <details>
+    <summary>⚖️ Is this legal?</summary>
+    <p>Yes. FilterlyPro only organizes publicly available metadata from TMDB. We don't host, stream, or distribute any copyrighted content.</p>
   </details>
 </section>
 
 <!-- 🔹 Footer -->
 <footer>
-  © 2025 FilterlyPro · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="https://github.com/seowizard9-lang/Images/blob/main/Filterlogo3lighter.png?raw=true" alt="FilterlyPro">
+      <span>FilterlyPro</span>
+    </div>
+    
+    <div class="footer-links">
+      <a href="/configure">Configure Add-On</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="mailto:support@filterlypro.com">Contact Support</a>
+    </div>
+    
+    <div class="footer-note">
+      <p>This product uses the TMDB API but is not endorsed or certified by TMDB. Certain features are powered by OpenAI's GPT technology. OpenAI does not endorse or certify this product.</p>
+      <p style="margin-top: 15px;">© 2025 FilterlyPro. All rights reserved.</p>
+    </div>
+  </div>
 </footer>
 
 <!-- 🔹 JS -->
