@@ -9,6 +9,8 @@
 
 <!-- Google Font for Nunito -->
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800;900&display=swap" rel="stylesheet">
+
 
 <style>
 :root {
@@ -424,6 +426,12 @@ footer a:hover {
   .button-secondary { margin-left: 0; margin-top: 15px; }
   section h2 { font-size: 1.8rem; }
 }
+/* ---------- Gradient Shift Animation ---------- */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 </style>
 </head>
 <body>
@@ -557,18 +565,20 @@ footer a:hover {
       <a href="mailto:support@filterlypro.com">Contact Support</a>
     </div>
     
-     <p style="margin-top: 15px; font-family: 'Poppins', sans-serif; text-align: center;">
+  <p style="margin-top: 15px; font-family: 'Poppins', sans-serif; text-align: center;">
   © 2025 FilterlyPro. All rights reserved. 
   A <a href="https://9punk.dev/" target="_blank" 
      style="font-weight: 700; text-decoration: none;
             background: linear-gradient(90deg, #ff3fa8, #00e0ff, #ff3fa8);
             background-size: 300% 300%;
+            background-position: 0% 50%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: gradientShift 8s linear infinite;">
      9punk.dev
   </a> project.
 </p>
+
   </div>
 </footer>
 
